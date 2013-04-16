@@ -1,0 +1,5 @@
+<decorators defaultdir="/">
+    <decorator name="local" page="local.flt">
+        <pattern>/index.page</pattern>
+    </decorator>
+</decorators>

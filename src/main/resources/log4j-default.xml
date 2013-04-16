@@ -1,0 +1,46 @@
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <appender class="org.apache.log4j.RollingFileAppender" name="logfile">
+        <param value="/logs/${tine.environment}/starterkit/starterkit.log" name="File"/>
+        <param value="5" name="MaxBackupIndex"/>
+        <param value="1024KB" name="MaxFileSize"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param value="%d %-5p %c - %m%n" name="ConversionPattern"/>
+        </layout>
+    </appender>
+    <appender class="org.apache.log4j.RollingFileAppender" name="commonLogfile">
+        <param value="/logs/${tine.environment}/starterkit/starterkit-common.log" name="File"/>
+        <param value="2" name="MaxBackupIndex"/>
+        <param value="1024KB" name="MaxFileSize"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param value="%d %-5p %c - %m%n" name="ConversionPattern"/>
+        </layout>
+    </appender>
+
+
+    <appender name="asyncLogFile" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="logfile"/>
+    </appender>
+    <appender name="asyncCommonLogFile" class="org.apache.log4j.AsyncAppender">
+        <appender-ref ref="commonLogfile"/>
+    </appender>
+
+
+    <logger additivity="false" name="no.tine">
+        <level value="WARN"/>
+        <appender-ref ref="asyncLogFile"/>
+    </logger>
+
+    <logger additivity="false" name="com">
+        <level value="ERROR"/>
+        <appender-ref ref="asyncCommonLogFile"/>
+    </logger>
+    <logger additivity="false" name="net">
+        <level value="ERROR"/>
+        <appender-ref ref="asyncCommonLogFile"/>
+    </logger>
+    <logger additivity="false" name="org">
+        <level value="ERROR"/>
+        <appender-ref ref="asyncCommonLogFile"/>
+    </logger>
+
+</log4j:configuration>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- fra common -->
+    <import resource="classpath:/context/common-tam-config.xml"/>
+    <import resource="classpath:/context/common-context.xml"/>
+
+    <!-- verticalsite-decorators -->
+    <import resource="classpath:decorators-enableannotations.xml"/>
+    <import resource="classpath:decorators-cachemanager.xml"/>
+    <import resource="classpath:decorator.xml"/>
+
+
+    <!-- enable processing of annotations such as @Autowired and @Configuration -->
+    <context:annotation-config/>
+    <context:component-scan base-package="no.tine.starterkit.config"/>
+    <bean class="no.tine.common.config.EnvironmentPropertiesConfig"/>
+
+
+    <!-- CACHE -->
+    <bean id="appCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache-starterkit.xml"/>
+    </bean>
+
+</beans>

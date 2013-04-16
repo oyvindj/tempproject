@@ -1,0 +1,5 @@
+<decorators defaultdir="/">
+    <decorator name="vs_693" page="verticalsite/693.flt">
+        <pattern>/index.page</pattern>
+    </decorator>
+</decorators>
